@@ -1,0 +1,48 @@
+--Exercise 1
+SELECT product_name, quantity_in_stock, 
+    unit_price, quantity_in_stock * unit_price AS 'Total value'
+FROM Products;
+
+--Exercise 2
+SELECT 
+    product_name, 
+    quantity_in_stock, 
+    unit_price, 
+    quantity_in_stock * unit_price AS total_value
+FROM 
+    Products
+WHERE 
+    product_name LIKE 'S%' 
+    AND unit_price BETWEEN 2.00 AND 3.00
+    AND product_note IS NOT NULL;
+
+--Exercise 3
+SELECT 
+    product_name, 
+    quantity_in_stock, 
+    unit_price,
+    quantity_in_stock * unit_price AS total_value
+FROM 
+    Products
+WHERE 
+    (product_name LIKE 'P%' OR product_name LIKE 'T%') 
+    AND  quantity_in_stock BETWEEN 10 AND 30
+    AND category_id IN (2, 3)
+    AND product_note IS NULL
+ORDER BY 
+    total_value DESC
+LIMIT 5;
+
+
+--Exercise 4
+SELECT 
+    product_name, 
+    quantity_in_stock,
+    CASE
+        WHEN quantity_in_stock > 25 THEN 'High Stock'
+        ELSE 'Low Stock'
+    END AS stock_status
+FROM 
+    Products
+ORDER BY 
+    quantity_in_stock DESC;
